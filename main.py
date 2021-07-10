@@ -2,6 +2,44 @@
 from tkinter import *
 import os
 
+
+def delete2():
+    screen3.destroy()
+
+def delete3():
+    screen4.destroy()
+
+def delete4():
+    screen5.destroy()
+
+
+
+def login_succes():
+    global screen3
+    screen3 = Toplevel(screen)
+    screen3.title('Success')
+    screen3.geometry('150x100')
+    Label(screen3, text= 'Login Sucess').pack()
+    Button(screen3, text = 'OK', command = delete2).pack()
+
+def password_not_recognised():
+    global screen4
+    screen4 = Toplevel(screen)
+    screen4.title('Success')
+    screen4.geometry('150x100')
+    Label(screen4, text= 'Password not recognised').pack()
+    Button(screen4, text = 'OK', command = delete3).pack()
+
+def user_not_found():
+    global screen5
+    screen5 = Toplevel(screen)
+    screen5.title('Success')
+    screen5.geometry('150x100')
+    Label(screen5, text= 'User not found').pack()
+    Button(screen5, text = 'OK', command = delete4).pack()
+
+
+
 def register_user():
     username_info = username.get()
     password_info = password.get()
@@ -23,17 +61,17 @@ def login_verify():
     password_entry1.delete (0, END)
 
     list_of_files = os.listdir()
-    print(list_of_files)
+    
     if username1 in list_of_files:
         file1 = open(username1, 'r')
         verify = file1.read().splitlines()
         print(verify)
         if password1 in verify:
-            print('login succes')
+            login_succes()
         else: 
-            print('password has not been recognised')
+            password_not_recognised()
     else:
-        print('User not found !')
+        user_not_found()
 
 
 
